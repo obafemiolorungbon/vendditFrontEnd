@@ -1,0 +1,1 @@
+export const SignUpUrl = process.env.REACT_APP_SIGN_UP_URL

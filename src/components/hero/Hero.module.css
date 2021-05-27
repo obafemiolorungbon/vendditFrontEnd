@@ -1,0 +1,212 @@
+/* font-family: 'Inter', sans-serif;
+font-family: 'Red Hat Display', sans-serif; */
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+nav {
+    font-family: 'Inter', sans-serif !important;
+}
+
+.main {
+    background-color: black;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.toph1 {
+    font-size: 4rem;
+    line-height: 1.16;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+.topP {
+    font-size: 1.25rem;
+    line-height: 1.25;
+    font-family: 'Inter', sans-serif;
+}
+
+.heroContainer {
+    max-width: 72rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.innerHeroContainer {
+    padding-top: 5rem;
+    padding-bottom: 4rem;
+    box-sizing: border-box;
+    color: rgba(244, 244, 245, 1);
+    /* background-image: linear-gradient(94.75deg, rgb(5, 157, 255) 0%, rgb(101, 73, 213) 43.66%, rgb(227, 63, 161) 64.23%, rgb(246, 79, 86) 80.09%, rgb(251, 83, 67) 83.76%, rgb(253, 123, 66) 100%) !important; */
+}
+
+.containerMain {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.mockUpIphoneContainer {
+    grid-column: span 5/ span 5;
+    padding-top: 5rem;
+}
+
+.mockUpMain {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mock-up-iphone {
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.iphoneSvg {
+    opacity: .4;
+    z-index: -1;
+    position: absolute;
+    pointer-events: none;
+    margin-top: 8rem;
+    margin-bottom: 3rem;
+    display: block;
+    width: 678px;
+    height: 634px;
+}
+
+.iphoneMockUp {
+    max-width: none;
+    margin-right: 0;
+    position: relative;
+    pointer-events: none;
+    margin-left: auto !important;
+    height: auto !important;
+    width: 344px;
+    height: 674px;
+}
+
+.snappyScreenshot {
+    max-width: 84.3%;
+    position: absolute;
+    width: 290px;
+    aspect-ratio: 290/624px;
+    text-align: right;
+    box-sizing: border-box;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+#pricing {
+    background-color: rgba(46, 46, 51, 1);
+}
+
+.sales-text-div {
+    font-family: 'Inter', sans-serif;
+}
+
+#logo-img {
+    max-width: 10rem;
+    max-height: 50%;
+}
+
+#sign-up-text {
+    font-family: 'Red Hat Display', sans-serif;
+    line-height: 1.12;
+    font-size: 3rem;
+}
+
+#sign-up-p {
+    font-family: 'Inter', sans-serif;
+}
+
+#main-reg a,
+p {
+    font-family: 'Inter', sans-serif !important;
+}
+
+#sign-in-highlight {
+    color: #3abab4;
+}
+
+#main-signin p {
+    font-family: 'Inter', sans-serif !important;
+}
+
+.failedvalidation {
+    color: red;
+    margin: 5px 5px ;
+
+    text-align: justify;
+    background-color: white;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.failedvalidation p,span{
+    margin: 2px;
+    
+}
+
+.failedvalidation svg {
+    fill: red;
+    display: inline-block;
+}
+
+iframe {
+    width: 30%;
+    height: 10rem;
+    margin-top: 20px;
+}
+
+
+/* 
+==================================MEDIA QUERIES=============================== */
+
+@media (min-width:1020px) {
+    .containerMain {
+        gap: 5rem;
+    }
+}
+
+@media (min-width:768px) {
+    .heroTextContainer {
+        grid-column: span 7/span 7;
+        text-align: left;
+        margin-bottom: 0;
+        box-sizing: border-box;
+    }
+    .containerMain {
+        display: grid;
+        gap: 3rem;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        align-items: center;
+        box-sizing: border-box;
+    }
+}
+
+@media (min-width:640px) {
+    .heroContainer {
+        max-width: 72rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        box-sizing: border-box;
+        margin-left: auto;
+        margin-right: auto;
+        color: rgba(244, 244, 245, 1)
+    }
+}
