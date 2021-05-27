@@ -36,7 +36,7 @@ function App() {
         />
         <ProtectedRoute
           path="/reset-page"
-          allow={loggedIn}
+          allow={resetAccess}
           rest={setResetAccess}
           component={ResetPage}
           routeTo = "/signin"
