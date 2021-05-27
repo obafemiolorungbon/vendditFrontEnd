@@ -30,7 +30,7 @@ export const ResetPassword =({setAccess:setResetAccess})=>{
             axios({
               method: "POST",
               data: dataToSend,
-              url: "http://localhost:5000/users/reset-password",
+              url: process.env.RESET_PASSWORD||"http://localhost:5000/users/reset-password",
               headers: { "content-type": "application/x-www-form-urlencoded" },
             })
               .then((results) => {

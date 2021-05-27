@@ -29,7 +29,7 @@ const SignUp = ()=>{
       const dataToSend = GetFormData(values,formData)
       axios({
         
-        url:"http://localhost:5000/users/signup",
+        url:process.env.SIGN_UP_URL||"http://localhost:5000/users/signup",
         headers:{"content-type":"multipart/form-data"},
         method:"POST",
         data:dataToSend
