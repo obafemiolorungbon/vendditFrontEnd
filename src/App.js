@@ -42,9 +42,11 @@ function App() {
           routeTo = "/signin"
 
         />
-        <Route
+        <ProtectedRoute
           path="/dashboard"
+          allow={loggedIn}
           component={DashboardBase}
+          routeTo="/signin"
         />
         <Route
           path="/signin"
