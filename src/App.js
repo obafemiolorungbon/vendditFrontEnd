@@ -27,59 +27,55 @@ function App() {
 
   return (
     <div className="App">
-    <Router>
-      <Nav />
-      <Switch>
-        <Route
-          path="/signup"
-          component={SignUp}
-        />
-        <ProtectedRoute
-          path="/reset-page"
-          allow={resetAccess}
-          rest={setResetAccess}
-          component={ResetPage}
-          routeTo = "/signin"
+      <Router>
+        <Nav />
+        <Switch>
+          <Route path="/signup" component={SignUp} />
+          <ProtectedRoute
+            path="/reset-page"
+            allow={resetAccess}
+            rest={setResetAccess}
+            component={ResetPage}
+            routeTo="/signin"
+          />
+          <ProtectedRoute
+            path="/dashboard"
+            allow={loggedIn}
+            component={DashboardBase}
+            routeTo="/signin"
+          />
+          <Route
+            path="/signin"
+            setSignIn={setLogin}
+            render={() => {
+              return <SignIn setSignIn={setLogin} />;
+            }}
+          />
 
-        />
-        <ProtectedRoute
-          path="/dashboard"
-          allow={loggedIn}
-          component={DashboardBase}
-          routeTo="/signin"
-        />
-        <Route
-          path="/signin"
-          setSignIn = {setLogin}
-          render = {()=>{
-            return <SignIn setSignIn = {setLogin}/>
-          }}
-        />
+          <Route
+            path="/reset-password"
+            setAccess={setResetAccess}
+            render={() => {
+              return <ResetPassword setAccess={setResetAccess} />;
+            }}
+          />
 
-        <Route
-          path="/reset-password"
-          render = {()=>{
-            return <ResetPassword setAccess={setResetAccess} />
-          }}
-        />
-
-        <ProtectedRoute
-          path="/reset-request-success"
-          allow = {resetAccess}
-          component = {ResetRequestSuccess}
-          routeTo = "/signin"
-        />
-        <ProtectedRoute
-          path="/reset-success"
-          allow = {resetAccess}
-          component={ResetSuccesss}
-          routeTo="/signin"
-        />
-        <Route path="/" component={HomePage}/>
-  
-      </Switch>
-      <DarkFooter />
-    </Router>
+          <ProtectedRoute
+            path="/reset-request-success"
+            allow={resetAccess}
+            component={ResetRequestSuccess}
+            routeTo="/signin"
+          />
+          <ProtectedRoute
+            path="/reset-success"
+            allow={resetAccess}
+            component={ResetSuccesss}
+            routeTo="/signin"
+          />
+          <Route path="/" component={HomePage} />
+        </Switch>
+        <DarkFooter />
+      </Router>
     </div>
   );
 }
