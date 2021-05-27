@@ -1,5 +1,5 @@
 import React from "react";
-import Person from "images/sign-up.png";
+import Person from "images/wallpaper3.png";
 import tw from "twin.macro";
 import SignUpSVG from "components/misc/SignupSVG";
 

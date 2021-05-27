@@ -41,7 +41,6 @@ export const ResetPassword =({setAccess:setResetAccess})=>{
               })
               .catch((error) => {
                 setServerError(error.response.data.message);
-                console.log(error.response.data.message);
               });
         }
     })
