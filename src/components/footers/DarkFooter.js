@@ -2,10 +2,7 @@ import "./DarkFooter.style.css";
 import { useFormik } from "formik";
 import {
   FormInput,
-  SignInButton,
-  ForgottenPassword,
   ValidationError,
-  ServerValidation,
 } from "components/misc/Forms";
 import FormData from "form-data";
 import { GetFormData } from "utils/getFormData";
