@@ -28,25 +28,26 @@ const SignUp = ()=>{
       const formData = new FormData()
       const dataToSend = GetFormData(values,formData)
       axios({
-        
-        url:process.env.SIGN_UP_URL||"http://localhost:5000/users/signup",
-        headers:{"content-type":"multipart/form-data"},
-        method:"POST",
-        data:dataToSend
-      }).then(response=>{
-        setSuccess("Sign up Successful, now redirectiong to Log in Page")
-        setTimeout(()=>{
-
-          history.push("/signin")
-
-        },3000)
-        console.log(response)
-      }).catch(err=>{
-        if (err){
-          setErrors(err.response.data.message)
-          return
-        }
+        url:
+          process.env.REACT_APP_SIGN_UP_URL ||
+          "http://localhost:5000/users/signup",
+        headers: { "content-type": "multipart/form-data" },
+        method: "POST",
+        data: dataToSend,
       })
+        .then((response) => {
+          setSuccess("Sign up Successful, now redirectiong to Log in Page");
+          setTimeout(() => {
+            history.push("/signin");
+          }, 3000);
+          console.log(response);
+        })
+        .catch((err) => {
+          if (err) {
+            setErrors(err.response.data.message);
+            return;
+          }
+        });
     },
     validationSchema:yup.object({
       email:yup.string().email("Invalid Email Address").required("Your email is needed"),

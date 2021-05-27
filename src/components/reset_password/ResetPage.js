@@ -34,21 +34,23 @@ export const ResetPage = ({setAccess:setResetAccess}) => {
             formData.append("userId", urlParams.get("id"))
             const dataToSend = GetFormData(values,formData)
             axios({
-              url: process.env.RESET_CONFIRM||"http://localhost:5000/users/reset-confirm",
+              url:
+                process.env.REACT_APP_RESET_CONFIRM ||
+                "http://localhost:5000/users/reset-confirm",
               data: dataToSend,
               headers: { "Content-Type": "multipart/form-data" },
               method: "POST",
             })
               .then((response) => {
                 //set access to protected route
-                setResetAccess(true)
-                console.log(response)
+                setResetAccess(true);
+                console.log(response);
                 //if response indicates success, proceed to reset success page
                 history.push("/reset-success");
               })
               .catch((error) => {
                 //if failed then set as validation error from server
-                setServerError(error.response.data.message)
+                setServerError(error.response.data.message);
               });
         }  
     })

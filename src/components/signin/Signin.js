@@ -28,20 +28,22 @@ const Signin = ({setSignIn}) => {
         const dataTosend = GetFormData(values, formData);
         axios({
           method: "POST",
-          url: process.env.SIGN_IN_URL||"http://localhost:5000/users/signin",
+          url:
+            process.env.REACT_APP_SIGN_IN_URL ||
+            "http://localhost:5000/users/signin",
           headers: { "content-type": "multipart/form-data" },
           data: dataTosend,
         })
           .then((response) => {
-            setSignIn(true)
+            setSignIn(true);
             console.log(response);
-            history.push("/dashboard")
+            history.push("/dashboard");
             return;
           })
           .catch((error) => {
             if (error) {
-              console.log(error)
-              setErrors(error.response.data.message)
+              console.log(error);
+              setErrors(error.response.data.message);
             }
           });
       },

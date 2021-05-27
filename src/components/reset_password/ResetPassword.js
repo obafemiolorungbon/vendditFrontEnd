@@ -30,12 +30,14 @@ export const ResetPassword =({setAccess:setResetAccess})=>{
             axios({
               method: "POST",
               data: dataToSend,
-              url: process.env.RESET_PASSWORD||"http://localhost:5000/users/reset-password",
+              url:
+                process.env.REACT_APP_RESET_PASSWORD ||
+                "http://localhost:5000/users/reset-password",
               headers: { "content-type": "application/x-www-form-urlencoded" },
             })
               .then((results) => {
-                setResetAccess(true)
-                history.push("/reset-request-success")
+                setResetAccess(true);
+                history.push("/reset-request-success");
               })
               .catch((error) => {
                 setServerError(error.response.data.message);
