@@ -36,6 +36,7 @@ const SignUp = ()=>{
         data: dataToSend,
       })
         .then((response) => {
+          setErrors("");
           setSuccess("Sign up Successful, now redirectiong to Log in Page");
           setTimeout(() => {
             history.push("/signin");
