@@ -14,7 +14,7 @@ const SubmitButton = tw.button`inline-flex items-center justify-center w-full h-
 
 
 
-export const ResetPassword =({setAccess:setResetAccess})=>{
+export const ResetPassword =({setAccess:setResetSuccess})=>{
     const [serverError, setServerError] = useState("")
     const history = useHistory()
 
@@ -30,17 +30,16 @@ export const ResetPassword =({setAccess:setResetAccess})=>{
             axios({
               method: "POST",
               data: dataToSend,
-              url:
-                process.env.REACT_APP_RESET_PASSWORD ||
-                "http://localhost:5000/users/reset-password",
+              url: process.env.REACT_APP_RESET_PASSWORD,
               headers: { "content-type": "application/x-www-form-urlencoded" },
             })
               .then((results) => {
-                setResetAccess(true);
+                setResetSuccess(true);
                 history.push("/reset-request-success");
               })
               .catch((error) => {
-                setServerError(error.response.data.message);
+                console.log(error)
+                setServerError(error.message);
               });
         }
     })

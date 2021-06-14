@@ -10,9 +10,6 @@ const ProtectedRoute = ({component: Comp,path,allow,routeTo,rest})=>{
         return allow ? <Comp setAccess = {rest}/>:<Redirect to={routeTo}/>
     }}
     />
-
-
-    )
-}
+)}
 
 export default ProtectedRoute

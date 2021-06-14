@@ -2,12 +2,15 @@ import React,{ useState } from "react"
 import tw from "twin.macro"
 import { useHistory } from "react-router-dom"
 import axios from "axios"
+import setUser from "hooks/getuser";
 import { useFormik }  from "formik"
 import {FormInput,ServerSuccess, SubmitButton,SignInInstead,ButtonWrappers,ValidationError,ServerValidation} from "components/misc/Forms"
 import SignUpBase from "components/misc/SignUpBase"
 import FormData from "form-data"
 import { GetFormData } from "utils/getFormData"
 import * as yup from "yup";
+//this allows that cookies are sent with post and getrequests
+axios.defaults.withCredentials = true;
 
 
 const TandC = tw.p`text-xs text-gray-600 sm:text-sm `;
@@ -28,14 +31,13 @@ const SignUp = ()=>{
       const formData = new FormData()
       const dataToSend = GetFormData(values,formData)
       axios({
-        url:
-          process.env.REACT_APP_SIGN_UP_URL ||
-          "http://localhost:5000/users/signup",
+        url: process.env.REACT_APP_SIGN_UP_URL,
         headers: { "content-type": "multipart/form-data" },
         method: "POST",
         data: dataToSend,
       })
         .then((response) => {
+          setUser();
           setErrors("");
           setSuccess("Sign up Successful, now redirectiong to Log in Page");
           setTimeout(() => {
@@ -45,7 +47,12 @@ const SignUp = ()=>{
         })
         .catch((err) => {
           if (err) {
-            setErrors(err.response.data.message);
+            try {
+              setErrors(err.response.data.message);
+            } catch (err) {
+              console.log(err);
+              history.push("/");
+            }
             return;
           }
         });

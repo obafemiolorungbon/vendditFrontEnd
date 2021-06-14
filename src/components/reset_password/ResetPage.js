@@ -34,9 +34,7 @@ export const ResetPage = ({setAccess:setResetAccess}) => {
             formData.append("userId", urlParams.get("id"))
             const dataToSend = GetFormData(values,formData)
             axios({
-              url:
-                process.env.REACT_APP_RESET_CONFIRM ||
-                "http://localhost:5000/users/reset-confirm",
+              url:process.env.REACT_APP_RESET_CONFIRM ,
               data: dataToSend,
               headers: { "Content-Type": "multipart/form-data" },
               method: "POST",

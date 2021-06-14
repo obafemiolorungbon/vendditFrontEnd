@@ -32,6 +32,7 @@
     "webfontloader": "^1.6.28",
     "yup": "^0.32.9"
   },
+  "proxy": "http://localhost:3001",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -56,10 +57,9 @@
       "last 1 safari version"
     ]
   },
-  "babelMacros":{
-    "twin":{
-      "config":"./src/tailwind.config.js"
+  "babelMacros": {
+    "twin": {
+      "config": "./src/tailwind.config.js"
     }
-
   }
 }

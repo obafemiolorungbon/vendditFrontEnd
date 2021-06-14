@@ -23,7 +23,9 @@ function App() {
   },[])
 
   const [loggedIn, setLogin] = useState(false)
-  const [resetAccess, setResetAccess] = useState(false)
+  //this allows access to the request received page only after sending request
+  const [resetSuccess, setResetSuccess] = useState(false);
+  const [resetAccess, setResetAccess] = useState(true)
 
   return (
     <div className="App">
@@ -54,21 +56,21 @@ function App() {
 
           <Route
             path="/reset-password"
-            setAccess={setResetAccess}
+            setAccess={setResetSuccess}
             render={() => {
-              return <ResetPassword setAccess={setResetAccess} />;
+              return <ResetPassword setAccess={setResetSuccess} />;
             }}
           />
 
           <ProtectedRoute
             path="/reset-request-success"
-            allow={resetAccess}
+            allow={resetSuccess}
             component={ResetRequestSuccess}
             routeTo="/signin"
           />
           <ProtectedRoute
             path="/reset-success"
-            allow={resetAccess}
+            allow={resetSuccess}
             component={ResetSuccesss}
             routeTo="/signin"
           />
