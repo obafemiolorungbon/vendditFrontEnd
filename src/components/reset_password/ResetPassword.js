@@ -38,7 +38,6 @@ export const ResetPassword =({setAccess:setResetSuccess})=>{
                 history.push("/reset-request-success");
               })
               .catch((error) => {
-                console.log(error)
                 setServerError(error.message);
               });
         }

@@ -18,7 +18,6 @@ export const AuthRoute = ({ component: Comp, path, routeTo,  }) => {
   //then allow user in(they are authenthicated) else,redirect them to login page?Home
 
   if (user) {
-    console.log("Has user context")
     return (
       <Route
         path={path}
@@ -28,8 +27,6 @@ export const AuthRoute = ({ component: Comp, path, routeTo,  }) => {
       />
     );
   }else{
-    console.log(user)
-    console.log("User is not auth")
     return <Redirect to={routeTo} />;
   }
 };

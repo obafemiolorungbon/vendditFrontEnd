@@ -42,7 +42,6 @@ export const ResetPage = ({setAccess:setResetAccess}) => {
               .then((response) => {
                 //set access to protected route
                 setResetAccess(true);
-                console.log(response);
                 //if response indicates success, proceed to reset success page
                 history.push("/reset-success");
               })

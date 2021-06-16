@@ -20,7 +20,6 @@ export const useConfirmUser = ()=>{
             setUser(res.data.currentUser)
             history.push("/dashboard")
         }).catch(err =>{
-            console.log(err)
         });
 
     }
@@ -67,7 +66,6 @@ export const useConfirmUser = ()=>{
         })
             .catch((error) => {
               if (error) {
-                  console.log(error)
                 setErrors(error.response.data.message);
               }
             });
