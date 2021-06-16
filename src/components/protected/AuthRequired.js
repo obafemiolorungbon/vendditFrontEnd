@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import UserContext  from "hooks/userContext";
 import { Redirect, Route } from "react-router-dom";
-import ContentLoader, { BulletList } from "react-content-loader";
+import { BulletList } from "react-content-loader";
 
 export const MyLoader = () => <BulletList />;
 

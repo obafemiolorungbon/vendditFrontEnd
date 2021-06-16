@@ -1,4 +1,4 @@
-import {useState, React, useContext, useEffect} from 'react';
+import {useState, React, useContext} from 'react';
 import UserContext  from "hooks/userContext"
 import snappy from "images/vendditLogo.png"
 import styles from "./Navbar.module.css"
@@ -192,18 +192,6 @@ const MainNav = ({callToAction}) =>{
     </div>
   );
 }
-
-const AlternateNav = () =>{
-
-  return (
-  <div>
-
-  </div>
-  )
-}
-
-
-
 
 export const Nav = () => {
   const location = useLocation()
