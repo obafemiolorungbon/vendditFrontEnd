@@ -1,7 +1,6 @@
-import {React,useState} from "react"
 import axios from "axios";
-import {useHistory} from "react-router-dom"
 import { useFormik } from "formik";
+import { useConfirmUser } from "hooks/confirmUser";
 import {
   FormInput,
   SignInButton,
@@ -9,43 +8,23 @@ import {
   ValidationError,
   ServerValidation
 } from "components/misc/Forms";
-import {SignInBase} from "components/misc/SignInBase";
-import FormData from "form-data";
-import { GetFormData } from "utils/getFormData";
+import { SignInBase } from "components/misc/SignInBase";
 import * as yup from "yup"
 axios.defaults.withCredentials = true
 
 
-const Signin = ({setSignIn}) => {
-  const [errors,setErrors]  = useState("")
-  let history = useHistory()
+const Signin = () => {
+
+
+  const { loginUser, error } = useConfirmUser()
+
     const formik = useFormik({
       initialValues: {
         email: "",
         password: "",
       },
-      onSubmit: (values) => {
-        const formData = new FormData();
-        const dataTosend = GetFormData(values, formData);
-        axios({
-          method: "POST",
-          url:
-            process.env.REACT_APP_SIGN_IN_URL ,
-          headers: { "content-type": "multipart/form-data" },
-          data: dataTosend,
-        })
-          .then((response) => {
-            setSignIn(true);
-            console.log(response);
-            history.push("/dashboard");
-            return;
-          })
-          .catch((error) => {
-            if (error) {
-              console.log(error);
-              setErrors(error.response.data.message);
-            }
-          });
+      onSubmit: async (values) =>{
+        await loginUser(values)
       },
       validationSchema: yup.object({
         email: yup.string().email("That is infact, not a valid email").required("We need your email to log you"),
@@ -90,7 +69,7 @@ const Signin = ({setSignIn}) => {
             touched={formik.touched.password}
           />
           <SignInButton />
-          <ServerValidation error={errors} />
+          <ServerValidation error={error} />
           <ForgottenPassword />
         </div>
       </form>

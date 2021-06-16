@@ -1,15 +1,14 @@
 import React from "react";
-import {Redirect, Route} from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 
-
-const ProtectedRoute = ({component: Comp,path,allow,routeTo,rest})=>{
-    return(
+export const ProtectedRoute = ({ component: Comp, path, allow, routeTo, rest }) => {
+  return (
     <Route
-    path={path}
-    render={()=>{
-        return allow ? <Comp setAccess = {rest}/>:<Redirect to={routeTo}/>
-    }}
+      path={path}
+      render={() => {
+        return allow ? <Comp setAccess={rest} /> : <Redirect to={routeTo} />;
+      }}
     />
-)}
+  );
+};
 
-export default ProtectedRoute

@@ -1,13 +1,9 @@
-import React,{ useState } from "react"
 import tw from "twin.macro"
-import { useHistory } from "react-router-dom"
 import axios from "axios"
-import setUser from "hooks/getuser";
 import { useFormik }  from "formik"
-import {FormInput,ServerSuccess, SubmitButton,SignInInstead,ButtonWrappers,ValidationError,ServerValidation} from "components/misc/Forms"
+import { FormInput,ServerSuccess, SubmitButton,SignInInstead,ButtonWrappers,ValidationError,ServerValidation} from "components/misc/Forms"
 import SignUpBase from "components/misc/SignUpBase"
-import FormData from "form-data"
-import { GetFormData } from "utils/getFormData"
+import { useConfirmUser } from "hooks/confirmUser";
 import * as yup from "yup";
 //this allows that cookies are sent with post and getrequests
 axios.defaults.withCredentials = true;
@@ -16,9 +12,9 @@ axios.defaults.withCredentials = true;
 const TandC = tw.p`text-xs text-gray-600 sm:text-sm `;
 
 const SignUp = ()=>{
-  const [error,setErrors] = useState("")
-  const [success,setSuccess]=useState("")
-  const history = useHistory()
+
+  const { registerNewUser, error, success } = useConfirmUser()
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -27,36 +23,10 @@ const SignUp = ()=>{
       productName: "",
       general:""
     },
-    onSubmit: (values) => {
-      const formData = new FormData()
-      const dataToSend = GetFormData(values,formData)
-      axios({
-        url: process.env.REACT_APP_SIGN_UP_URL,
-        headers: { "content-type": "multipart/form-data" },
-        method: "POST",
-        data: dataToSend,
-      })
-        .then((response) => {
-          setUser();
-          setErrors("");
-          setSuccess("Sign up Successful, now redirectiong to Log in Page");
-          setTimeout(() => {
-            history.push("/signin");
-          }, 3000);
-          console.log(response);
-        })
-        .catch((err) => {
-          if (err) {
-            try {
-              setErrors(err.response.data.message);
-            } catch (err) {
-              console.log(err);
-              history.push("/");
-            }
-            return;
-          }
-        });
-    },
+    onSubmit: async(values) => {
+      await registerNewUser(values)
+    }
+    ,
     validationSchema:yup.object({
       email:yup.string().email("Invalid Email Address").required("Your email is needed"),
       businessName:yup.string().min(5,"Business name should be atleast 5 characters").required("Your business name is special, do tell"),
