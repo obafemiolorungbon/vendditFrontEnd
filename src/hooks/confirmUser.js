@@ -19,7 +19,6 @@ export const useConfirmUser = ()=>{
             //user home after the check. Not to worry, dashboard comp. will take care of the auth
             setUser(res.data.currentUser)
             history.push("/dashboard")
-            console.log(res.data)
         }).catch(err =>{
             setErrors(error)
         });
