@@ -40,8 +40,8 @@ export const HeroPage = ({heroLargeText,trialLink,registerLink,supportingText}) 
               </HeroContainer>
 
               <div
-                data-aos="fade-left"
-                data-aos-duration="800"
+                // data-aos="fade-left"
+                // data-aos-duration="800"
                 className={styles.mockUpIphoneContainer}
               >
                 <div className={styles.mockUpMain}>

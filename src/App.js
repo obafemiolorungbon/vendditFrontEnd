@@ -19,6 +19,7 @@ import "aos/dist/aos.css"
 
 
 function App() {
+  //extract this hook
   useEffect(()=>{
     AOS.init()
     AOS.refresh()
@@ -29,6 +30,7 @@ function App() {
   //state function too that will be passed down to any variable that needs it e.g reg and login page
 
   const { setUser, user, isLoading } = useVisitChecker()
+  console.log(user)
   //this allows access to the request received page only after sending request
   const [resetSuccess, setResetSuccess] = useState(false);
 

@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import UserContext from "hooks/userContext";
 import "./DarkFooter.style.css";
 import { useFormik } from "formik";
 import {
@@ -8,10 +10,16 @@ import FormData from "form-data";
 import { GetFormData } from "utils/getFormData";
 import * as yup from "yup";
 import axios from "axios";
+import { MyLoader } from "components/protected/AuthRequired";
+import { useLocation } from "react-router-dom";
 
 
 
 const Footer = () => {
+
+  const { isLoading } = useContext(UserContext);
+
+ 
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -39,6 +47,10 @@ const Footer = () => {
         .required("We need your email to log you"),
     }),
   });
+
+   if (isLoading) {
+     return <MyLoader />;
+   }
   return (
     <div className="bg-black">
       <div className="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -282,4 +294,17 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+const MainFooter = () =>{
+  const history = useLocation()
+  const location = history.pathname
+
+  if (location === "/dashboard"){
+    return null
+  }else{
+    return <Footer/>
+  }
+
+
+}
+
+export default MainFooter;

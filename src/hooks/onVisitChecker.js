@@ -19,7 +19,8 @@ export const useVisitChecker = () =>{
                //set the user state as the current user
                setUser(res.data.currentUser)
                //meaning that the result is back and loading screen can now go off
-               setLoading(false)
+               setTimeout(()=>{setLoading(false)},4000)
+               
            }).catch(err => {
                setLoading(false)
            })
