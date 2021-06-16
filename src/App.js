@@ -32,6 +32,7 @@ function App() {
   const { setUser, user, isLoading } = useVisitChecker()
   //this allows access to the request received page only after sending request
   const [resetSuccess, setResetSuccess] = useState(false);
+  console.log(user)
 
   return (
     <div className="App">
