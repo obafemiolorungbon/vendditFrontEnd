@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import UserContext from "hooks/userContext";
-import "./DarkFooter.style.css";
 import { useFormik } from "formik";
+import "./DarkFooter.style.css"
 import {
   FormInput,
   ValidationError,
@@ -22,7 +22,7 @@ const Footer = () => {
  
   const formik = useFormik({
     initialValues: {
-      email: "",
+      subEmail: "",
     },
     onSubmit: (values) => {
       const formData = new FormData();
@@ -231,14 +231,14 @@ const Footer = () => {
             </span>
             <form onSubmit={formik.handleSubmit} className="flex flex-col mt-4 md:flex-row">
               <FormInput
-                name="email"
+                name="subEmail"
                 placeholder="sample@gmail.com"
                 type="text"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.email}
-                errors={formik.errors.email}
-                touched={formik.touched.email}
+                value={formik.values.subEmail}
+                errors={formik.errors.subEmail}
+                touched={formik.touched.subEmail}
               />
               <ValidationError
                 errors={formik.errors.email}

@@ -1,4 +1,5 @@
 module.exports = {
+  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   prefix: "",
   important: false,
   separator: ":",
@@ -27,7 +28,9 @@ module.exports = {
         800: "#460fb3",
         900: "#3c0d99",
       },
-
+      cta: {
+        100: "#9CEBD5",
+      },
       secondary: {
         100: "#7c8ba1",
         200: "#667892",
@@ -341,6 +344,11 @@ module.exports = {
       4: "1rem",
       5: "1.25rem",
       6: "1.5rem",
+      7: "1.75rem",
+      9: "2.25rem",
+      28: "7rem",
+      80: "20rem",
+      96: "24rem",
       8: "2rem",
       10: "2.5rem",
       12: "3rem",
@@ -353,8 +361,6 @@ module.exports = {
       56: "14rem",
       64: "16rem",
       72: "18rem",
-      80: "20rem",
-      96: "24rem",
       128: "32rem",
       144: "36rem",
     },
@@ -608,7 +614,7 @@ module.exports = {
       25: "0.25",
       50: "0.5",
       75: "0.75",
-      85:"0.85",
+      85: "0.85",
       100: "1",
     },
     order: {

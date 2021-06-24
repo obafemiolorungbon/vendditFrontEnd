@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^6.1.2",
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
@@ -16,10 +17,12 @@
     "form-data": "^4.0.0",
     "formik": "^2.2.7",
     "framer-motion": "^4.1.13",
+    "html-to-image": "^1.6.2",
     "react": "^17.0.2",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-content-loader": "^6.0.3",
     "react-dom": "^17.0.2",
+    "react-images-upload": "^1.2.8",
     "react-modal": "^3.13.1",
     "react-rnd": "^10.2.4",
     "react-router-dom": "^5.2.0",
@@ -34,6 +37,9 @@
     "yup": "^0.32.9"
   },
   "scripts": {
+    "startdev": "craco start",
+    "build-dev": "craco build",
+    "test-dev": "craco test",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -61,5 +67,10 @@
     "twin": {
       "config": "./src/tailwind.config.js"
     }
+  },
+  "devDependencies": {
+    "autoprefixer": "^9",
+    "postcss": "^7",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   }
 }

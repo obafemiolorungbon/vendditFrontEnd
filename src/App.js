@@ -14,6 +14,7 @@ import UserContext  from "hooks/userContext"
 import ResetRequestSuccess from "components/reset_password/ResetRequestSuccessful"
 import { DashboardBase } from "components/dashboard/UserDashboard"
 import { useVisitChecker } from "hooks/onVisitChecker";
+import { Error404Page2 } from "components/NotFound/Error404";
 import AOS from "aos";
 import "aos/dist/aos.css"
 
@@ -29,7 +30,7 @@ function App() {
   //this allows you to set the global context in App.js. the onvisit hook returns a
   //state function too that will be passed down to any variable that needs it e.g reg and login page
 
-  const { setUser, user, isLoading } = useVisitChecker()
+  const { setUser, user, isLoading} = useVisitChecker()
   //this allows access to the request received page only after sending request
   const [resetSuccess, setResetSuccess] = useState(false);
 
@@ -39,7 +40,7 @@ function App() {
       {/* using the user context we created earlier, we can pass down, the current user,
       the function to set that, e.g in reg and login as well as the isLoading which will
       come handy for loading the homepage component */}
-      <UserContext.Provider value = {{setUser, user, isLoading}}>
+      <UserContext.Provider value = {{setUser, user, isLoading }}>
         <Nav />
         <Switch>
           <Route path="/signup" component={SignUp} />
@@ -73,14 +74,16 @@ function App() {
             component={ResetRequestSuccess}
             routeTo="/signin"
           />
-          <ProtectedRoute
+          <Route
             path="/reset-success"
-            allow={resetSuccess}
             component={ResetSuccesss}
-            routeTo="/signin"
           />
-          <Route path="/" component={HomePage} />
+          <Route path="/" exact component={HomePage} />
+          <Route component = {Error404Page2}
+          home={'/'}
+          />
         </Switch>
+        
         <DarkFooter />
         </UserContext.Provider>
       </Router>

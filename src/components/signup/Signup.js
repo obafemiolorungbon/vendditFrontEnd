@@ -14,7 +14,6 @@ const TandC = tw.p`text-xs text-gray-600 sm:text-sm `;
 const SignUp = ()=>{
 
   const { registerNewUser, error, success } = useConfirmUser()
-
   const formik = useFormik({
     initialValues: {
       email: "",

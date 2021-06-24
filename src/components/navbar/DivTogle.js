@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 
 export const ParentDiv = tw.div`absolute top-auto left-0 w-full`;
-export const ChildDiv = tw.div`p-5 bg-gray-800 border rounded shadow-sm`;
+export const ChildDiv = tw.div`p-5 bg-gray-800 text-center border rounded shadow-sm`;
 export const NavBarLink = tw.a`font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400`;
 export const SignUpLink = ({linkTo,others,text})=>{
     return (

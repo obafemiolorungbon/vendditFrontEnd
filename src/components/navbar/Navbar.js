@@ -37,10 +37,12 @@ const MainNav = ({callToAction}) =>{
        if (url === "/"||url === "/signup"){
          setCTA("Sign In");
          setCTALinks("/signin");
+         setIsMenuOpen(false)
          return
        }else if (url === "/signin"){
          setCTA("Sign Up")
          setCTALinks("/signup")
+         setIsMenuOpen(false)
        }
      };
 
@@ -101,6 +103,7 @@ const MainNav = ({callToAction}) =>{
                   className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                   aria-label={'proceed to dashboard'}
                   title={'proceed to dashboard'}
+                  onClick = {()=>{setIsMenuOpen(false)}}
                 >
                   Return To Dashboard
                 </Link>
@@ -171,15 +174,26 @@ const MainNav = ({callToAction}) =>{
                         </NavBarLinks>
                       </li>
                       <li>
-                        <Link
-                          to={CTALinks}
-                          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                          aria-label={CTA}
-                          title={CTA}
-                          onClick={handleClick}
-                        >
-                          {CTA}
-                        </Link>
+                        {user ? (
+                <Link
+                  to={"/dashboard"}
+                  className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                  aria-label={'proceed to dashboard'}
+                  title={'proceed to dashboard'}
+                >
+                  Return To Dashboard
+                </Link>
+              ) : (
+                <Link
+                  to={CTALinks}
+                  className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                  aria-label={CTA}
+                  title={CTA}
+                  onClick={handleClick}
+                >
+                  {CTA}
+                </Link>
+              )}
                       </li>
                     </LinkLists>
                   </nav>

@@ -16,7 +16,7 @@ export const FormInput = ({name,labelName,placeholder,type,onChange,onBlur,value
         <Input
           placeholder={placeholder}
           type={type}
-          id={name}
+          id={signin ? `signin-${name}`:name}
           name={name}
           onChange={onChange}
           onBlur={onBlur}

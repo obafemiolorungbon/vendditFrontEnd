@@ -2,6 +2,7 @@ import React from "react";
 import tw from "twin.macro"
 import {Link} from "react-router-dom"
 import {Header} from "./DashboardContainer"
+import { NormalButton } from "components/Buttons/Buttons";
 import {SettingsIcon,
   HomePathIcon,
   ProjectIcon,
@@ -10,7 +11,12 @@ import {SettingsIcon,
   TimeManagerIcon,
   ReportIcon,
 IconSVG} from "./DashboardSVGs"
-
+import { TemplateMaker } from "components/MakeTemplates/TemplateView";
+import { TemplateContext } from "hooks/TemplateContext";
+import { useTemplateSetter } from "hooks/setProductDetails";
+import axios from "axios"
+import { useConfirmUser } from "hooks/confirmUser";
+axios.defaults.withCredentials = true;
 
 const Wrapper = tw.div`bg-gray-100 dark:bg-gray-800 rounded-2xl relative h-screen overflow-hidden relative`;
 const FlexContainer = tw.div`flex items-start justify-between`;
@@ -96,6 +102,7 @@ const NavItem = ({path,text,to})=>{
 
 
 export const NavBar = ()=>{
+  const { logOutUser } = useConfirmUser()
 
   return (
     <SideNavWrapper tw="mt-6">
@@ -107,6 +114,10 @@ export const NavBar = ()=>{
         <NavItem path={TimeManagerIcon} to="#" text="My Links" />
         <NavItem path={ReportIcon} to="#" text="New Orders" />
         <NavItem path={SettingsIcon} to="#" text="New Deliveries" />
+        <NormalButton
+          text="Log Out"
+          onClick={(e)=>{e.preventDefault();logOutUser()}}
+        />
       </div>
     </SideNavWrapper>
   );
@@ -114,27 +125,55 @@ export const NavBar = ()=>{
 
 
 
-const DashboardContainerWrapper = tw.div`flex flex-col w-full pl-0 md:p-4 md:space-y-4`
+const DashboardContainerWrapper = tw.div`flex flex-col w-full pl-0 overflow-auto md:p-4 md:space-y-4`
 
 
 
 
 export const DashboardBase = ()=>{
-  return (
-    <Wrapper>
-      <FlexContainer>
-        <VerticalSide>
-          <VerticalSideIn>
-            <Logo/>
-            <NavBar/>
-              
-          </VerticalSideIn>
 
-        </VerticalSide>
-        <DashboardContainerWrapper>
-          <Header/>
-        </DashboardContainerWrapper>
-      </FlexContainer>
-    </Wrapper>
-  )
+    const {
+      productDescription,
+      productPrice,
+      productName,
+      productDiscountPrice,
+      setProductDescription,
+      setProductName,
+      setProductPrice,
+      setProductDiscountPrice,
+      setProductImage,
+      image,
+    } = useTemplateSetter();
+
+  return (
+    <TemplateContext.Provider
+      value={{
+        setProductDescription,
+        setProductName,
+        setProductPrice,
+        setProductDiscountPrice,
+        productDescription,
+        productPrice,
+        productName,
+        productDiscountPrice,
+        setProductImage,
+        image
+      }}
+    >
+      <Wrapper>
+        <FlexContainer>
+          <VerticalSide>
+            <VerticalSideIn>
+              <Logo />
+              <NavBar />
+            </VerticalSideIn>
+          </VerticalSide>
+          <DashboardContainerWrapper>
+            <Header />
+            <TemplateMaker />
+          </DashboardContainerWrapper>
+        </FlexContainer>
+      </Wrapper>
+    </TemplateContext.Provider>
+  );
 }

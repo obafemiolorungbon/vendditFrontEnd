@@ -5,6 +5,7 @@ import { Features } from "components/about/Features.js";
 import { Pricing } from "components/pricing/Pricing.js";
 import UserContext from "hooks/userContext";
 import { MyLoader } from "components/protected/AuthRequired";
+import { CTAOne } from "components/CTAs/CallToAction";
 
 
 const HomePage = ()=> {
@@ -26,6 +27,7 @@ const HomePage = ()=> {
       <Features />
       <Card />
       <Pricing />
+      <CTAOne/>
     </div>
   );
 }

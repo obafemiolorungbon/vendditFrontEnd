@@ -20,7 +20,7 @@ export const useConfirmUser = ()=>{
             setUser(res.data.currentUser)
             history.push("/dashboard")
         }).catch(err =>{
-            setErrors(error)
+            setErrors(err)
         });
 
     }
@@ -72,12 +72,24 @@ export const useConfirmUser = ()=>{
             });
       
     }
+    const logOutUser = async () => {
+      return axios
+        .get(process.env.REACT_APP_LOG_OUT)
+        .then((res) => {
+          // destroy cookie and push to home
+        setUserContext();
+        })
+        .catch((err) => {
+          setErrors(err);
+        });
+    };
 
     return {
         registerNewUser,
         loginUser,
         error,
-        success
+        success,
+        logOutUser
     }
 
 
