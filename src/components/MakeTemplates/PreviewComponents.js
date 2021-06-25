@@ -1,28 +1,34 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import tw from "twin.macro";
 import { NormalButton } from "components/Buttons/Buttons";
 import  { PreviewBox } from "./PreviewBox"
 import { toPng } from "html-to-image";
+import { TemplateContext } from "hooks/TemplateContext";
+import { sendImageToServer } from "hooks/sendImageToServer";
+import { createDownloadLinkAndDownload} from "hooks/createImage";
+import { uploadImageToColudinary } from "hooks/uploadImageToCloudinary";
+import axios from "axios";
+axios.defaults.withCredentials=true
 const Wrapper = tw.div`flex flex-col gap-4  content-center`
 
 export const PreviewComponent = () =>{
-
+    const { productName } = useContext(TemplateContext)
     const node = useRef(null)
-    const handleClick = ()=>{
-        toPng(node.current)
-        .then(dataUrl => {
-            const link = document.createElement("a");
-            link.href = dataUrl
-            link.setAttribute("download","new download")
-            document.body.appendChild(link)
-            link.click()
-        })
-        //TODO:
-        //Image generation is done client side. But as client downloads, the image details
-        //is sent to the server and saved under the user's records of products
-        //from whence the column for My Products is fetched from.
-        console.log("TODO")
-
+    const handleClick = async ()=>{
+        const dataUrl = await toPng(node.current)
+         createDownloadLinkAndDownload(dataUrl,productName);
+        // create new file to upload to cloudinary
+        let options = {
+            type: "image/jpeg",
+        };
+        let file = new File([dataUrl], productName, options);
+        // upload the image to cloudinary
+        const url = await uploadImageToColudinary({productName,file})
+        const values = {
+            productName:productName,
+            url:url
+        }
+       await sendImageToServer(values)
     }
     return (
         <>

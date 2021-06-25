@@ -9,17 +9,17 @@ const EachContainer = tw.div`flex w-1/2 flex-col`
 
 export const TemplateMaker = () =>{
 
-    return(
-        <>
-            <TemplateMakerBox>
+    return (
+      <>
+<TemplateMakerBox>
             <EachContainer>
-                <SideForm/>
+              <SideForm />
             </EachContainer>
 
             <EachContainer>
-                <PreviewComponent/>
+              <PreviewComponent />
             </EachContainer>
-            </TemplateMakerBox>
-        </>
-    )
+          </TemplateMakerBox>
+      </>
+    );
 }

@@ -25,6 +25,7 @@ export const useConfirmUser = ()=>{
 
     }
 
+    
     const registerNewUser = async (values) =>{
             const formData = new FormData();
             const dataToSend = GetFormData(values, formData);
@@ -89,7 +90,7 @@ export const useConfirmUser = ()=>{
         loginUser,
         error,
         success,
-        logOutUser
+        logOutUser,
     }
 
 
