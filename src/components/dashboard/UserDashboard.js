@@ -1,31 +1,32 @@
 import React from "react";
-import tw from "twin.macro"
-import {Link} from "react-router-dom"
-import {Header} from "./DashboardContainer"
+import tw from "twin.macro";
+import { Link } from "react-router-dom";
+import { Header } from "./DashboardContainer";
 import { NormalButton } from "components/Buttons/Buttons";
-import {SettingsIcon,
+import {
+  SettingsIcon,
   HomePathIcon,
   ProjectIcon,
   MyTaskIcon,
   CalendarIcon,
   TimeManagerIcon,
   ReportIcon,
-IconSVG} from "./DashboardSVGs"
+  IconSVG,
+} from "./DashboardSVGs";
 import { TemplateMaker } from "components/MakeTemplates/TemplateView";
 import { TemplateContext } from "hooks/TemplateContext";
 import { useTemplateSetter } from "hooks/setProductDetails";
-import axios from "axios"
+import axios from "axios";
 import { useConfirmUser } from "hooks/confirmUser";
 axios.defaults.withCredentials = true;
 
-const Wrapper = tw.div`bg-gray-100 dark:bg-gray-800 rounded-2xl relative h-screen overflow-hidden relative`;
+const Wrapper = tw.div`bg-gray-100  p-4 dark:bg-gray-800 rounded-2xl lg:p-0 md:p-0 relative h-screen overflow-auto relative`;
 const FlexContainer = tw.div`flex items-start justify-between`;
-const VerticalSide = tw.div`h-screen hidden lg:block my-4 ml-4 shadow-lg relative w-80`
+const VerticalSide = tw.div`h-screen hidden lg:block lg:fixed md:fixed my-4 ml-4 shadow-lg relative max-w-sidebar`;
 const VerticalSideIn = tw.div`bg-white h-full rounded-2xl dark:bg-gray-700`;
 const LogoWrapper = tw.div`flex items-center justify-center pt-6`;
 
-
-export const Logo = ()=>{
+export const Logo = () => {
   return (
     <LogoWrapper>
       <svg
@@ -71,38 +72,28 @@ export const Logo = ()=>{
       </svg>
     </LogoWrapper>
   );
-}
-
-
-
+};
 
 const AnchorTag = tw(
   Link
 )`w-full font-thin uppercase text-blue-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start bg-gradient-to-r from-white to-blue-100 border-r-4 border-blue-500 dark:from-gray-700 dark:to-gray-800 border-r-4 border-blue-500`;
-const SideNavWrapper = tw.div``
+const SideNavWrapper = tw.div``;
 const IconText = tw.span`text-left`;
 const IconTextLower = tw.span`mx-4 text-sm font-normal`;
 
-const NavItem = ({path,text,to})=>{
-
+const NavItem = ({ path, text, to }) => {
   return (
-    <AnchorTag
-      to={to}
-    >
-      <IconText >
-        <IconSVG>
-          {path}
-        </IconSVG>
+    <AnchorTag to={to}>
+      <IconText>
+        <IconSVG>{path}</IconSVG>
       </IconText>
       <IconTextLower>{text}</IconTextLower>
     </AnchorTag>
   );
-}
+};
 
-
-
-export const NavBar = ()=>{
-  const { logOutUser } = useConfirmUser()
+export const NavBar = () => {
+  const { logOutUser } = useConfirmUser();
 
   return (
     <SideNavWrapper tw="mt-6">
@@ -116,34 +107,31 @@ export const NavBar = ()=>{
         <NavItem path={SettingsIcon} to="#" text="New Deliveries" />
         <NormalButton
           text="Log Out"
-          onClick={(e)=>{e.preventDefault();logOutUser()}}
+          onClick={(e) => {
+            e.preventDefault();
+            logOutUser();
+          }}
         />
       </div>
     </SideNavWrapper>
   );
-}
+};
 
+const DashboardContainerWrapper = tw.div`flex flex-col w-full lg:pl-64 overflow-auto md:p-4 md:space-y-4`;
 
-
-const DashboardContainerWrapper = tw.div`flex flex-col w-full pl-0 overflow-auto md:p-4 md:space-y-4`
-
-
-
-
-export const DashboardBase = ()=>{
-
-    const {
-      productDescription,
-      productPrice,
-      productName,
-      productDiscountPrice,
-      setProductDescription,
-      setProductName,
-      setProductPrice,
-      setProductDiscountPrice,
-      setProductImage,
-      image,
-    } = useTemplateSetter();
+export const DashboardBase = () => {
+  const {
+    productDescription,
+    productPrice,
+    productName,
+    productDiscountPrice,
+    setProductDescription,
+    setProductName,
+    setProductPrice,
+    setProductDiscountPrice,
+    setProductImage,
+    image,
+  } = useTemplateSetter();
 
   return (
     <TemplateContext.Provider
@@ -157,7 +145,7 @@ export const DashboardBase = ()=>{
         productName,
         productDiscountPrice,
         setProductImage,
-        image
+        image,
       }}
     >
       <Wrapper>
@@ -176,4 +164,4 @@ export const DashboardBase = ()=>{
       </Wrapper>
     </TemplateContext.Provider>
   );
-}
+};

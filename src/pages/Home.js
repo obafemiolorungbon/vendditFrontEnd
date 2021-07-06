@@ -4,17 +4,13 @@ import HeroPage from "components/hero/Hero.js";
 import { Features } from "components/about/Features.js";
 import { Pricing } from "components/pricing/Pricing.js";
 import UserContext from "hooks/userContext";
-import { MyLoader } from "components/protected/AuthRequired";
-import { CTAOne } from "components/CTAs/CallToAction";
+import { Loading } from "components/protected/AuthRequired";
 
+const HomePage = () => {
+  const { isLoading } = useContext(UserContext);
 
-const HomePage = ()=> {
-
-  const { isLoading } = useContext(UserContext)
-
-
-  if (isLoading){
-    return <MyLoader/>
+  if (isLoading) {
+    return <Loading />;
   }
   return (
     <div>
@@ -27,9 +23,8 @@ const HomePage = ()=> {
       <Features />
       <Card />
       <Pricing />
-      <CTAOne/>
     </div>
   );
-}
+};
 
 export default HomePage;

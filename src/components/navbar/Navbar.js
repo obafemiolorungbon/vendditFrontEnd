@@ -1,15 +1,12 @@
-import {useState, React, useContext} from 'react';
-import UserContext  from "hooks/userContext"
-import snappy from "images/vendditLogo.png"
-import styles from "./Navbar.module.css"
-import { ButtonBase, Toggler} from "components/misc/NavToggle.js"
-import {ParentDiv, ChildDiv, NavBarLink} from "./DivTogle";
-import tw from "twin.macro"
+import { useState, React, useContext } from "react";
+import UserContext from "hooks/userContext";
+import snappy from "images/vendditLogo.png";
+import styles from "./Navbar.module.css";
+import { ButtonBase, Toggler } from "components/misc/NavToggle.js";
+import { ParentDiv, ChildDiv, NavBarLink } from "./DivTogle";
+import tw from "twin.macro";
 import styled from "styled-components";
-import { Link, useLocation } from "react-router-dom"
-import { MyLoader } from 'components/protected/AuthRequired';
-
-
+import { Link, useLocation } from "react-router-dom";
 
 const StyledPDiv = styled(ParentDiv)`
   z-index: 200;
@@ -20,34 +17,37 @@ const NavBarLinks = styled(NavBarLink)`
   font-family: "Inter", sans-serif;
   font-size: 1.2rem;
 `;
-const MainContainer = tw.div`px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8`; 
+const MainContainer = tw.div`px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8`;
 const SubContainer = tw.div`relative flex items-center justify-between`;
 const ListContainer = tw.ul`flex items-center hidden space-x-8 lg:flex`;
-const LinkLists = tw.ul`space-y-4`
-const Logo = styled.img`max-width:10rem;max-height:50%`
+const LinkLists = tw.ul`space-y-4`;
+const Logo = styled.img`
+  max-width: 10rem;
+  max-height: 50%;
+`;
 
-const MainNav = ({callToAction}) =>{
+const MainNav = ({ callToAction }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, isLoading } = useContext(UserContext)
+  const { user, isLoading } = useContext(UserContext);
   const location = useLocation();
   const url = location.pathname;
   const [CTA, setCTA] = useState("Sign up");
   const [CTALinks, setCTALinks] = useState("/signup");
-     const handleClick = () => {
-       if (url === "/"||url === "/signup"){
-         setCTA("Sign In");
-         setCTALinks("/signin");
-         setIsMenuOpen(false)
-         return
-       }else if (url === "/signin"){
-         setCTA("Sign Up")
-         setCTALinks("/signup")
-         setIsMenuOpen(false)
-       }
-     };
+  const handleClick = () => {
+    if (url === "/" || url === "/signup") {
+      setCTA("Sign In");
+      setCTALinks("/signin");
+      setIsMenuOpen(false);
+      return;
+    } else if (url === "/signin") {
+      setCTA("Sign Up");
+      setCTALinks("/signup");
+      setIsMenuOpen(false);
+    }
+  };
 
-  if (isLoading){
-    return <MyLoader/>
+  if (isLoading) {
+    return null;
   }
   return (
     <div className="bg-black">
@@ -101,9 +101,11 @@ const MainNav = ({callToAction}) =>{
                 <Link
                   to={"/dashboard"}
                   className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                  aria-label={'proceed to dashboard'}
-                  title={'proceed to dashboard'}
-                  onClick = {()=>{setIsMenuOpen(false)}}
+                  aria-label={"proceed to dashboard"}
+                  title={"proceed to dashboard"}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                  }}
                 >
                   Return To Dashboard
                 </Link>
@@ -175,25 +177,25 @@ const MainNav = ({callToAction}) =>{
                       </li>
                       <li>
                         {user ? (
-                <Link
-                  to={"/dashboard"}
-                  className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                  aria-label={'proceed to dashboard'}
-                  title={'proceed to dashboard'}
-                >
-                  Return To Dashboard
-                </Link>
-              ) : (
-                <Link
-                  to={CTALinks}
-                  className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                  aria-label={CTA}
-                  title={CTA}
-                  onClick={handleClick}
-                >
-                  {CTA}
-                </Link>
-              )}
+                          <Link
+                            to={"/dashboard"}
+                            className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                            aria-label={"proceed to dashboard"}
+                            title={"proceed to dashboard"}
+                          >
+                            Return To Dashboard
+                          </Link>
+                        ) : (
+                          <Link
+                            to={CTALinks}
+                            className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                            aria-label={CTA}
+                            title={CTA}
+                            onClick={handleClick}
+                          >
+                            {CTA}
+                          </Link>
+                        )}
                       </li>
                     </LinkLists>
                   </nav>
@@ -205,16 +207,14 @@ const MainNav = ({callToAction}) =>{
       </MainContainer>
     </div>
   );
-}
+};
 
 export const Nav = () => {
-  const location = useLocation()
+  const location = useLocation();
 
-  if(location.pathname === "/dashboard"){
-    return null
+  if (location.pathname === "/dashboard") {
+    return null;
   }
 
-  return(
-    <MainNav/>
-  )
+  return <MainNav />;
 };

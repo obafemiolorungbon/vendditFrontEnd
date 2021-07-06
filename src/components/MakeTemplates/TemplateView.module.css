@@ -1,21 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Open+Sans&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Open+Sans&display=swap");
 
 .discount {
-    text-decoration: line-through;
-    font-size:1.5rem;
-    font-weight: 800;
-   font-family: 'Montserrat', sans-serif;
+  text-decoration: line-through;
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-family: "Montserrat", sans-serif;
 }
 
 .price {
-    font-size:1.5rem;
-    font-weight:800;
-    font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-family: "Montserrat", sans-serif;
 }
 
 .description {
-    font-family: 'Open Sans', sans-serif;
-    font-weight:400;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
 }
 
+.nairaSign {
+  font-size: 1.5rem;
+}

@@ -1,25 +1,17 @@
 import { useContext } from "react";
 import UserContext from "hooks/userContext";
 import { useFormik } from "formik";
-import "./DarkFooter.style.css"
-import {
-  FormInput,
-  ValidationError,
-} from "components/misc/Forms";
+import "./DarkFooter.style.css";
+import { FormInput, ValidationError } from "components/misc/Forms";
 import FormData from "form-data";
 import { GetFormData } from "utils/getFormData";
 import * as yup from "yup";
 import axios from "axios";
-import { MyLoader } from "components/protected/AuthRequired";
 import { useLocation } from "react-router-dom";
 
-
-
 const Footer = () => {
-
   const { isLoading } = useContext(UserContext);
 
- 
   const formik = useFormik({
     initialValues: {
       subEmail: "",
@@ -48,9 +40,9 @@ const Footer = () => {
     }),
   });
 
-   if (isLoading) {
-     return <MyLoader />;
-   }
+  if (isLoading) {
+    return null;
+  }
   return (
     <div className="bg-black">
       <div className="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -229,7 +221,10 @@ const Footer = () => {
             <span className="text-base font-medium tracking-wide text-gray-300">
               Subscribe for updates
             </span>
-            <form onSubmit={formik.handleSubmit} className="flex flex-col mt-4 md:flex-row">
+            <form
+              onSubmit={formik.handleSubmit}
+              className="flex flex-col mt-4 md:flex-row"
+            >
               <FormInput
                 name="subEmail"
                 placeholder="sample@gmail.com"
@@ -294,17 +289,15 @@ const Footer = () => {
   );
 };
 
-const MainFooter = () =>{
-  const history = useLocation()
-  const location = history.pathname
+const MainFooter = () => {
+  const history = useLocation();
+  const location = history.pathname;
 
-  if (location === "/dashboard"){
-    return null
-  }else{
-    return <Footer/>
+  if (location === "/dashboard") {
+    return null;
+  } else {
+    return <Footer />;
   }
-
-
-}
+};
 
 export default MainFooter;
