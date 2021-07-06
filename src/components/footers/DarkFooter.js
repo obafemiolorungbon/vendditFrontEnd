@@ -293,7 +293,7 @@ const MainFooter = () => {
   const history = useLocation();
   const location = history.pathname;
 
-  if (location === "/dashboard") {
+  if (location.includes("/dashboard")) {
     return null;
   } else {
     return <Footer />;

@@ -1,6 +1,6 @@
 import React from "react";
 import tw from "twin.macro";
-import { Link } from "react-router-dom";
+import { Link, Route, useRouteMatch, Switch } from "react-router-dom";
 import { Header } from "./DashboardContainer";
 import { NormalButton } from "components/Buttons/Buttons";
 import {
@@ -94,17 +94,46 @@ const NavItem = ({ path, text, to }) => {
 
 export const NavBar = () => {
   const { logOutUser } = useConfirmUser();
+  let match = useRouteMatch();
 
   return (
     <SideNavWrapper tw="mt-6">
       <div>
-        <NavItem path={HomePathIcon} to="#" text="Dashboard" />
-        <NavItem path={ProjectIcon} to="#" text="Products" />
-        <NavItem path={MyTaskIcon} to="#" text="My Deliveries" />
-        <NavItem path={CalendarIcon} to="#" text="My Payments" />
-        <NavItem path={TimeManagerIcon} to="#" text="My Links" />
-        <NavItem path={ReportIcon} to="#" text="New Orders" />
-        <NavItem path={SettingsIcon} to="#" text="New Deliveries" />
+        <NavItem
+          path={HomePathIcon}
+          to={`${match.url}/template-maker`}
+          text="Dashboard"
+        />
+        <NavItem
+          path={ProjectIcon}
+          to={`${match.url}/products`}
+          text="Products"
+        />
+        <NavItem
+          path={MyTaskIcon}
+          to={`${match.url}/deliveries`}
+          text="My Deliveries"
+        />
+        <NavItem
+          path={CalendarIcon}
+          to={`${match.url}/payments`}
+          text="My Payments"
+        />
+        <NavItem
+          path={TimeManagerIcon}
+          to={`${match.url}/links`}
+          text="My Links"
+        />
+        <NavItem
+          path={ReportIcon}
+          to={`${match.url}/orders`}
+          text="New Orders"
+        />
+        <NavItem
+          path={SettingsIcon}
+          to={`${match.url}/deliveries`}
+          text="New Deliveries"
+        />
         <NormalButton
           text="Log Out"
           onClick={(e) => {
@@ -120,6 +149,7 @@ export const NavBar = () => {
 const DashboardContainerWrapper = tw.div`flex flex-col w-full lg:pl-64 overflow-auto md:p-4 md:space-y-4`;
 
 export const DashboardBase = () => {
+  let match = useRouteMatch();
   const {
     productDescription,
     productPrice,
@@ -158,7 +188,13 @@ export const DashboardBase = () => {
           </VerticalSide>
           <DashboardContainerWrapper>
             <Header />
-            <TemplateMaker />
+            <Switch>
+              <Route
+                exact
+                path={`${match.path}/template-maker`}
+                component={TemplateMaker}
+              />
+            </Switch>
           </DashboardContainerWrapper>
         </FlexContainer>
       </Wrapper>

@@ -22,6 +22,7 @@
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-content-loader": "^6.0.3",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.2.0",
     "react-images-upload": "^1.2.8",
     "react-modal": "^3.13.1",
     "react-rnd": "^10.2.4",

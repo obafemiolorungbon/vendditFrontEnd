@@ -211,8 +211,9 @@ const MainNav = ({ callToAction }) => {
 
 export const Nav = () => {
   const location = useLocation();
+  let currentLocation = location.pathname;
 
-  if (location.pathname === "/dashboard") {
+  if (currentLocation.includes("/dashboard")) {
     return null;
   }
 
